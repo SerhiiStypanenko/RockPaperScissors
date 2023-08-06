@@ -1,0 +1,61 @@
+body {
+    text-align: center;
+    background-color: yellow;
+    font-family: 'Press Start 2P', serif;
+    font-size: 0.7em;
+    color:rgb(0, 64, 255);
+}
+img {
+    width: 200px;
+    transition: 0.6s;
+}
+
+.chooseOption img:hover {
+    transform: translateY(15px);
+    cursor: pointer;
+}
+/* #computerScore {
+    margin-left: 70px;
+}
+#playerScore {
+    margin-left: 20px;
+} */
+
+#gameResult {
+    opacity: 0;
+    transition: 1s;
+}
+
+#gameResult.show {
+    opacity: 1;
+    transition: 1s;
+}
+#playerChoice {
+    transform: scaleX(-1);
+}
+.gameScore {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: end;
+}
+
+
+.choices {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 70px;
+}
+
+.choices.showAnim{
+    animation-name: result_anim;
+    animation-duration: 0.5s;
+    animation-iteration-count: 2.7;
+}
+
+@keyframes result_anim {
+    0% {transform: translateY(0px);}
+    50% {transform: translateY(-25px);}
+    100% {transform: translateY(0px);}
+}

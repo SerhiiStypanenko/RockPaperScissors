@@ -3,8 +3,33 @@
 <head>
     <meta charset="UTF-8" />
     <title>title</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet'>
 </head>
 <body>
-    <script src="script.js"></script>
+    <div>
+        <div class="header">
+            <h1>ROCK PAPER SCISSORS</h1>
+            <h2>CHOOSE WISELY</h2>
+            <div class="chooseOption">
+                <img id="rock" src="img/rock.svg" alt="rock">
+                <img id="paper" src="img/paper.svg" alt="paper">
+                <img id="scissors" src="img/scissors.svg" alt="scissors">
+            </div>
+        </div>
+        <div class="gameScore">
+            <div>
+                <h1 id='playerScore'>You: 0</h1>
+                <h1 id="computerScore">Computer: 0</h1>
+            </div>
+        </div>
+        <div class="choices">
+            <img id="playerChoice" src="img/rock.svg" alt="rock">
+            <img id="computerChoice" src="img/rock.svg" alt="rock">
+        </div>
+        <h2 id="gameResult"></h2>
+        
+    </div>
 </body>
 </html>
