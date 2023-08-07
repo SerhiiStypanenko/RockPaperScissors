@@ -39,7 +39,23 @@ img {
     align-items: center;
     text-align: end;
 }
-
+.header {
+    display: flex;
+    justify-content: center;
+    margin-left: 240px;
+}
+.scoreboard {
+    margin-left: 70px;
+    margin-top: 45px;
+}
+.scoreboard table {
+    border-collapse: collapse;
+    border: 2px blue solid;
+}
+tr, th, td {
+    border: 2px blue solid;
+    padding: 4px;
+}
 
 .choices {
     margin-top: 10px;
