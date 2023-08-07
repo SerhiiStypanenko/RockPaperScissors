@@ -5,7 +5,10 @@ function getComputerChoice() {
 
 let playerScore = 0;
 let computerScore = 0;
-
+let gameNumber = 1;
+if(JSON.parse(localStorage.getItem('scoreboard')) != null){
+    gameNumber = JSON.parse(localStorage.getItem('scoreboard'))[JSON.parse(localStorage.getItem('scoreboard')).length-1].gameNumber + 1;
+}
 // let btn_rock = document.querySelector("#rock")
 // let btn_paper = document.querySelector("#paper")
 // let btn_scissors = document.querySelector("#scissors")
@@ -39,9 +42,7 @@ function showChoice(playerChoice, compChoice){
 }
 
 function playRound(playerSelection, computerSelection){
-    // console.log(playerSelection)
-    // console.log(computerSelection)
-    if (playerSelection === 'rock' && computerSelection ==="scissors" || 
+        if (playerSelection === 'rock' && computerSelection ==="scissors" || 
         playerSelection === 'scissors' && computerSelection ==="paper" ||
         playerSelection === 'paper' && computerSelection ==="rock"
         ){
@@ -55,10 +56,8 @@ function playRound(playerSelection, computerSelection){
     }else {
         computerScore++;
     }
-    // console.log("PlayerScore: ", playerScore);
-    // console.log("ComputerScore: ", computerScore);
-    displayScore();
     if(playerScore === 5 || computerScore === 5) showResult();   
+    displayScore();
       
 }
 
@@ -67,7 +66,44 @@ function displayScore() {
     document.querySelector("#playerScore").textContent = `You: ${playerScore}`;
     document.querySelector("#computerScore").textContent = `Computer: ${computerScore}`;
 }
+// localStorage.clear()
+let scoreboard = JSON.parse(localStorage.getItem('scoreboard')?localStorage.getItem('scoreboard'):JSON.stringify([]));
+function insertScoreboard() {
+    scoreboard.push({gameNumber,playerScore, computerScore});
+    localStorage.setItem('scoreboard', JSON.stringify(scoreboard));
+    // console.log(JSON.parse(localStorage.getItem('scoreboard')));
+    console.log(scoreboard);
+    // loadScoreboard();
+    const table = document.querySelector(".scoreboard table");
+    const row = table.insertRow(-1);
+    let table_gameNumber = row.insertCell(0);
+    let table_playerScore = row.insertCell(1);
+    let table_computerScore = row.insertCell(2);
+    table_gameNumber.textContent = scoreboard[scoreboard.length-1].gameNumber;
+    table_playerScore.textContent = scoreboard[scoreboard.length-1].playerScore;
+    table_computerScore.textContent = scoreboard[scoreboard.length-1].computerScore;
+    
+}
+window.addEventListener('load', ()=> {
+    loadScoreboard();
+})
+function loadScoreboard(){
+    const data = JSON.parse(localStorage.getItem('scoreboard'));
+    if(data === null) return;
+    // console.log(data);
+    const table = document.querySelector(".scoreboard table");
+    data.forEach(obj => {
+        const row = table.insertRow(-1);
+        let table_gameNumber = row.insertCell(0);
+        let table_playerScore = row.insertCell(1);
+        let table_computerScore = row.insertCell(2);
+        table_gameNumber.textContent = obj['gameNumber'];
+        table_playerScore.textContent = obj['playerScore'];
+        table_computerScore.textContent = obj['computerScore'];
+    })
+}
 function showResult() {
+    insertScoreboard();
     gameResult.classList.add('show');
     if(playerScore == 5){
         gameResult.textContent = `You won the match! Your score is ${playerScore}, and Computer's score was ${computerScore}`;
@@ -76,13 +112,14 @@ function showResult() {
     }
     playerScore = 0;
     computerScore = 0;
+    gameNumber++;
+    console.log(gameNumber);
 }
 
 // function getPlayerChoice() {
 //     const input = prompt('Please enter rock/paper or scissors');
 //     return input.toLowerCase();
 // }
-
 
 // function game() {
     
