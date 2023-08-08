@@ -18,6 +18,7 @@ if(JSON.parse(localStorage.getItem('scoreboard')) != null){
 const chooseOption = document.querySelectorAll(".chooseOption > img");
 const choices = document.querySelector('.choices')
 const gameResult = document.querySelector("#gameResult");
+const resetButton = document.querySelector("#resetButton");
 
 let selected_btn;
 chooseOption.forEach(btn => {
@@ -36,10 +37,29 @@ choices.addEventListener('animationend', (e) => {
     showChoice(selected_btn, compChoice);
     playRound(selected_btn, compChoice);
 })
+
+resetButton.addEventListener('click', ()=> {
+    localStorage.clear();
+    gameNumber = 1;
+    // location.reload();
+    // loadScoreboard();
+    document.querySelector(".scoreboard table").innerHTML = 
+    `<table>
+        <tr>
+            <th>#</th>
+            <th>You</th>
+            <th>Computer</th>
+        </tr>
+    </table>`;
+    
+    
+})
 function showChoice(playerChoice, compChoice){
     document.querySelector("#playerChoice").setAttribute('src', `/img/${playerChoice}.svg`)
     document.querySelector("#computerChoice").setAttribute('src', `/img/${compChoice}.svg`)
 }
+
+
 
 function playRound(playerSelection, computerSelection){
         if (playerSelection === 'rock' && computerSelection ==="scissors" || 
@@ -67,7 +87,7 @@ function displayScore() {
     document.querySelector("#computerScore").textContent = `Computer: ${computerScore}`;
 }
 // localStorage.clear()
-let scoreboard = JSON.parse(localStorage.getItem('scoreboard')?localStorage.getItem('scoreboard'):JSON.stringify([]));
+let scoreboard = JSON.parse(localStorage.getItem('scoreboard') ? localStorage.getItem('scoreboard'):JSON.stringify([]));
 function insertScoreboard() {
     scoreboard.push({gameNumber,playerScore, computerScore});
     localStorage.setItem('scoreboard', JSON.stringify(scoreboard));
@@ -89,9 +109,9 @@ window.addEventListener('load', ()=> {
 })
 function loadScoreboard(){
     const data = JSON.parse(localStorage.getItem('scoreboard'));
+    const table = document.querySelector(".scoreboard table");
     if(data === null) return;
     // console.log(data);
-    const table = document.querySelector(".scoreboard table");
     data.forEach(obj => {
         const row = table.insertRow(-1);
         let table_gameNumber = row.insertCell(0);
