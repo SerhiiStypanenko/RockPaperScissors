@@ -57,6 +57,18 @@ tr, th, td {
     padding: 4px;
 }
 
+#resetButton {
+    font-family: 'Press Start 2P', serif;
+    background-color: rgb(50, 177, 220);
+    border-color: rgb(63, 105, 221);
+    color:white;
+    font-size: 12px;
+    padding: 4px;
+    margin-top: 5px;
+    border-radius: 2px;
+    border-width: 4px;
+}
+
 .choices {
     margin-top: 10px;
     display: flex;
