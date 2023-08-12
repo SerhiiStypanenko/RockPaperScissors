@@ -25,8 +25,8 @@ chooseOption.forEach(btn => {
     btn.addEventListener('click', ()=> {
         gameResult.classList.remove('show');
         selected_btn = btn.id;
-        document.querySelector("#playerChoice").setAttribute('src', `/img/rock.svg`)
-        document.querySelector("#computerChoice").setAttribute('src', `/img/rock.svg`)
+        document.querySelector("#playerChoice").setAttribute('src', `img/rock.svg`)
+        document.querySelector("#computerChoice").setAttribute('src', `img/rock.svg`)
         choices.classList.add('showAnim');
     })
 });
@@ -55,8 +55,8 @@ resetButton.addEventListener('click', ()=> {
     
 })
 function showChoice(playerChoice, compChoice){
-    document.querySelector("#playerChoice").setAttribute('src', `/img/${playerChoice}.svg`)
-    document.querySelector("#computerChoice").setAttribute('src', `/img/${compChoice}.svg`)
+    document.querySelector("#playerChoice").setAttribute('src', `img/${playerChoice}.svg`)
+    document.querySelector("#computerChoice").setAttribute('src', `img/${compChoice}.svg`)
 }
 
 
